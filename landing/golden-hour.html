@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OmegaFounders — Forged in Silicon Valley</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+:root {
+  /* ── Golden Hour Palette ── */
+  --gold: #f4a900;
+  --gold-2: #ffc240;
+  --gold-3: rgba(244,169,0,0.18);
+  --gold-4: rgba(244,169,0,0.07);
+  --terra: #c1666b;
+  --terra-2: rgba(193,102,107,0.15);
+
+  /* ── Warm Dark Backgrounds ── */
+  --black: #1c0f00;
+  --near-black: #120900;
+  --dark-1: #241408;
+  --dark-2: #2e1c0e;
+  --dark-3: #3a2412;
+  --dark-4: #4a3018;
+
+  /* ── Warm Whites & Beiges ── */
+  --white: #fff8f0;
+  --off-white: #fdf0e0;
+  --gray-1: #e8d5b8;
+  --gray-2: #c4a070;
+  --gray-3: #8a6840;
+  --gray-4: #5a3e28;
+
+  /* ── Warm Borders ── */
+  --border: rgba(255,200,120,0.1);
+  --border-gold: rgba(244,169,0,0.28);
+
+  --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+body {
+  font-family: var(--font);
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ═══════════════════════════════════════
+   SCROLL ANIMATIONS
+═══════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ═══════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: rgba(28,15,0,0.75);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 0.5px solid rgba(255,180,80,0.12);
+  transition: background 0.3s;
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none; color: var(--white);
+  font-size: 17px; font-weight: 600; letter-spacing: -0.01em;
+}
+.nav-logo .omega { color: var(--gold); font-size: 20px; font-weight: 300; }
+
+.nav-links {
+  display: flex; align-items: center; gap: 28px;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--gray-2); text-decoration: none;
+  font-size: 12px; font-weight: 400; letter-spacing: 0.01em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--white); }
+
+.nav-apply {
+  background: var(--gold);
+  color: var(--black) !important;
+  padding: 7px 16px;
+  border-radius: 980px;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  transition: background 0.2s, transform 0.15s !important;
+}
+.nav-apply:hover { background: var(--gold-2) !important; transform: scale(1.03); }
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 24px 80px;
+  overflow: hidden;
+}
+
+/* Warm amber radial mesh background */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(244,169,0,0.20) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(193,102,107,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 20% 70%, rgba(220,120,40,0.09) 0%, transparent 50%),
+    var(--black);
+  animation: meshDrift 12s ease-in-out infinite alternate;
+}
+@keyframes meshDrift {
+  0% { opacity: 1; }
+  100% { opacity: 0.75; filter: hue-rotate(10deg); }
+}
+
+/* Subtle warm grid */
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,180,80,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,180,80,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 14px; font-weight: 500; letter-spacing: 0.04em;
+  color: var(--gold); margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeIn 1s var(--ease-out) 0.2s forwards;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ''; width: 32px; height: 0.5px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.hero-omega-glyph {
+  font-size: clamp(100px, 18vw, 200px);
+  font-weight: 200;
+  line-height: 1;
+  margin-bottom: 0;
+  background: linear-gradient(160deg, #ffc240 0%, #f4a900 35%, #a06600 70%, #f4a900 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 60px rgba(244,169,0,0.35));
+  opacity: 0;
+  animation: fadeSlideUp 1.2s var(--ease-out) 0.4s forwards;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-title {
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeSlideUp 1.2s var(--ease-out) 0.55s forwards;
+}
+.hero-title .line-2 {
+  display: block;
+  background: linear-gradient(90deg, #f0e0c0 0%, #fff8f0 50%, #d4b896 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: clamp(17px, 2.5vw, 22px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--gray-2);
+  max-width: 560px;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeSlideUp 1.2s var(--ease-out) 0.7s forwards;
+}
+
+.hero-cta-group {
+  display: flex; align-items: center; gap: 16px;
+  flex-wrap: wrap; justify-content: center;
+  margin-bottom: 80px;
+  opacity: 0;
+  animation: fadeSlideUp 1.2s var(--ease-out) 0.85s forwards;
+}
+
+.btn-cta-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold);
+  color: var(--black);
+  padding: 17px 32px;
+  border-radius: 980px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s var(--ease-spring), box-shadow 0.2s;
+  box-shadow: 0 0 0 0 rgba(244,169,0,0);
+}
+.btn-cta-primary:hover {
+  background: var(--gold-2);
+  transform: scale(1.04);
+  box-shadow: 0 8px 30px rgba(244,169,0,0.45);
+}
+
+.btn-cta-ghost {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--gold);
+  padding: 17px 24px;
+  border-radius: 980px;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition: gap 0.2s;
+  border: 0.5px solid var(--border-gold);
+}
+.btn-cta-ghost:hover { gap: 10px; }
+.btn-cta-ghost .arrow { font-style: normal; }
+
+/* Stats row */
+.hero-stats {
+  display: flex; align-items: stretch;
+  border: 0.5px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255,200,100,0.04);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeSlideUp 1.2s var(--ease-out) 1s forwards;
+}
+.hero-stat {
+  padding: 22px 36px;
+  text-align: center;
+  border-right: 0.5px solid var(--border);
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-val {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 2px;
+}
+.hero-stat-lbl {
+  font-size: 11px;
+  color: var(--gray-3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════
+   LOCATION BAR
+═══════════════════════════════════════ */
+.location-bar {
+  background: var(--dark-1);
+  border-top: 0.5px solid var(--border);
+  border-bottom: 0.5px solid var(--border);
+  padding: 16px 0;
+  overflow: hidden;
+  position: relative;
+}
+.location-bar::before, .location-bar::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 80px;
+  z-index: 2;
+}
+.location-bar::before { left: 0; background: linear-gradient(90deg, var(--dark-1), transparent); }
+.location-bar::after { right: 0; background: linear-gradient(-90deg, var(--dark-1), transparent); }
+
+.location-ticker {
+  display: flex; gap: 64px;
+  animation: ticker 20s linear infinite;
+  width: max-content;
+}
+.location-ticker-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--gray-2);
+  white-space: nowrap;
+}
+.location-ticker-item strong { color: var(--white); }
+.ticker-dot { color: var(--gold); font-size: 8px; }
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ═══════════════════════════════════════
+   SECTION SCAFFOLDING
+═══════════════════════════════════════ */
+.section { padding: 120px 0; }
+.section-dark { background: var(--dark-1); }
+.section-darker { background: var(--dark-2); }
+.section-black { background: var(--black); }
+
+.container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+.container-wide { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.headline {
+  font-size: clamp(36px, 5.5vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+
+.headline-xl {
+  font-size: clamp(40px, 6.5vw, 80px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+  margin-bottom: 20px;
+}
+
+.subhead {
+  font-size: clamp(17px, 2.2vw, 22px);
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--gray-2);
+  max-width: 580px;
+}
+
+.text-gold {
+  background: linear-gradient(135deg, var(--gold-2), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══════════════════════════════════════
+   OUTCOMES
+═══════════════════════════════════════ */
+.outcomes-intro {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.outcomes-intro .subhead { margin: 0 auto 40px; }
+
+.disclaimer-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(193,102,107,0.1);
+  border: 0.5px solid rgba(193,102,107,0.25);
+  padding: 8px 18px;
+  border-radius: 980px;
+  font-size: 12px; color: var(--terra);
+  margin-bottom: 60px;
+}
+
+.outcomes-bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 12px;
+}
+
+.outcome-tile {
+  background: var(--dark-3);
+  border: 0.5px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 32px;
+  transition: transform 0.3s var(--ease-spring), border-color 0.3s, background 0.3s;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+.outcome-tile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(244,169,0,0.08), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.outcome-tile:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(244,169,0,0.32);
+}
+.outcome-tile:hover::before { opacity: 1; }
+
+.outcome-tile.featured {
+  background: linear-gradient(145deg, rgba(244,169,0,0.12), rgba(244,169,0,0.04));
+  border-color: rgba(244,169,0,0.3);
+  grid-column: span 1;
+}
+
+.tile-icon {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+.tile-title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+  color: var(--white);
+}
+.tile-desc {
+  font-size: 15px;
+  color: var(--gray-2);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.tile-badge {
+  display: inline-block;
+  background: var(--gold-3);
+  border: 0.5px solid var(--border-gold);
+  color: var(--gold-2);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 980px;
+}
+
+/* ═══════════════════════════════════════
+   PROGRAM / 10 DAYS
+═══════════════════════════════════════ */
+.program-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.days-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 0.5px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+}
+.day-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 24px;
+  border-bottom: 0.5px solid var(--border);
+  transition: background 0.2s;
+}
+.day-row:last-child { border-bottom: none; }
+.day-row:hover { background: var(--dark-3); }
+.day-row.day-final {
+  background: linear-gradient(90deg, rgba(244,169,0,0.06), transparent);
+}
+.day-num-badge {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: var(--dark-4);
+  border: 0.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700;
+  color: var(--gray-2);
+  flex-shrink: 0;
+}
+.day-row.day-final .day-num-badge {
+  background: var(--gold-3);
+  border-color: var(--border-gold);
+  color: var(--gold-2);
+}
+.day-info { flex: 1; }
+.day-name {
+  font-size: 15px; font-weight: 600;
+  letter-spacing: -0.01em; color: var(--white);
+}
+.day-sub {
+  font-size: 12px; color: var(--gray-3);
+  margin-top: 1px;
+}
+.day-domain-badge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-3);
+  background: var(--dark-4);
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* Flywheel */
+.flywheel-visual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 60px;
+}
+.flywheel-card {
+  background: var(--dark-3);
+  border: 0.5px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
+  transition: transform 0.3s var(--ease-spring), border-color 0.3s;
+}
+.flywheel-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-gold);
+}
+.flywheel-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+.flywheel-title {
+  font-size: 17px; font-weight: 600;
+  letter-spacing: -0.01em; margin-bottom: 6px;
+}
+.flywheel-desc {
+  font-size: 13px; color: var(--gray-2); line-height: 1.55;
+}
+
+/* ═══════════════════════════════════════
+   HOST
+═══════════════════════════════════════ */
+.host-section {
+  border-top: 0.5px solid var(--border);
+  border-bottom: 0.5px solid var(--border);
+  padding: 48px 0;
+  background: var(--dark-2);
+}
+.host-inner {
+  display: flex; align-items: center; gap: 32px;
+  flex-wrap: wrap;
+}
+.host-ava {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--dark-3), var(--dark-4));
+  border: 0.5px solid var(--border-gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 30px; flex-shrink: 0;
+}
+.host-meta { flex: 1; }
+.host-label {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 4px;
+}
+.host-name {
+  font-size: 22px; font-weight: 700;
+  letter-spacing: -0.015em; margin-bottom: 2px;
+}
+.host-desc { font-size: 14px; color: var(--gray-2); }
+.host-quote {
+  flex: 1; min-width: 280px;
+  font-size: 15px; color: var(--gray-1);
+  line-height: 1.6;
+  border-left: 2px solid var(--gold);
+  padding-left: 20px;
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════
+   SPEAKERS
+═══════════════════════════════════════ */
+.speakers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.speaker-card {
+  background: var(--dark-2);
+  border: 0.5px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: transform 0.4s var(--ease-spring), border-color 0.3s, box-shadow 0.4s;
+}
+.speaker-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(244,169,0,0.38);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+
+.speaker-top {
+  background: linear-gradient(145deg, var(--dark-3), var(--dark-4));
+  padding: 36px 36px 28px;
+  border-bottom: 0.5px solid var(--border);
+  position: relative;
+}
+.speaker-top::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-2), var(--terra), transparent);
+}
+
+.speaker-avatar-wrap {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-3), rgba(244,169,0,0.35));
+  border: 1.5px solid var(--border-gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 34px;
+  margin-bottom: 20px;
+}
+.speaker-name {
+  font-size: 28px; font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.speaker-role {
+  font-size: 14px; font-weight: 500;
+  color: var(--gold); margin-bottom: 2px;
+}
+.speaker-org { font-size: 13px; color: var(--gray-3); }
+
+.speaker-body { padding: 28px 36px 36px; }
+.speaker-bio {
+  font-size: 15px; color: var(--gray-2);
+  line-height: 1.65; margin-bottom: 24px;
+}
+
+.speaker-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 12px; margin-bottom: 24px;
+}
+.sp-stat {
+  background: var(--dark-3);
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+}
+.sp-stat-val {
+  font-size: 20px; font-weight: 700;
+  color: var(--gold); letter-spacing: -0.02em;
+  display: block; margin-bottom: 2px;
+}
+.sp-stat-lbl { font-size: 11px; color: var(--gray-3); }
+
+.speaker-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 24px;
+}
+.speaker-tag {
+  background: var(--dark-4);
+  border: 0.5px solid var(--border);
+  color: var(--gray-2);
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 980px;
+}
+
+.speaker-session-box {
+  background: var(--gold-4);
+  border: 0.5px solid var(--border-gold);
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+.session-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 6px;
+  display: block;
+}
+.session-title { font-size: 15px; font-weight: 600; color: var(--white); }
+.session-desc { font-size: 13px; color: var(--gray-2); margin-top: 4px; }
+
+/* ═══════════════════════════════════════
+   SV ADVANTAGE
+═══════════════════════════════════════ */
+.sv-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.sv-quote-block {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: var(--gray-1);
+  margin-bottom: 40px;
+}
+.sv-quote-block em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--gold-2), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sv-benefits { display: flex; flex-direction: column; gap: 24px; }
+.sv-benefit {
+  display: flex; gap: 18px; align-items: flex-start;
+}
+.sv-benefit-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: var(--gold-4);
+  border: 0.5px solid var(--border-gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.sv-benefit-h { font-size: 16px; font-weight: 600; margin-bottom: 3px; }
+.sv-benefit-p { font-size: 14px; color: var(--gray-2); line-height: 1.5; }
+
+.sv-right-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.sv-panel-card {
+  background: var(--dark-3);
+  border: 0.5px solid var(--border);
+  border-radius: 18px;
+  padding: 28px 22px;
+  text-align: center;
+  transition: transform 0.3s var(--ease-spring), border-color 0.3s;
+}
+.sv-panel-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-gold);
+}
+.sv-panel-val {
+  font-size: 38px; font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--gold);
+  display: block; margin-bottom: 4px;
+}
+.sv-panel-lbl { font-size: 13px; color: var(--gray-2); line-height: 1.4; }
+
+/* ═══════════════════════════════════════
+   HALL OF HONOR
+═══════════════════════════════════════ */
+.honor-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 64px;
+}
+.honor-card {
+  background: var(--dark-3);
+  border: 0.5px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 28px;
+  text-align: center;
+  transition: transform 0.3s var(--ease-spring), border-color 0.3s, background 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.honor-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.honor-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--border-gold);
+  background: linear-gradient(145deg, rgba(244,169,0,0.07), var(--dark-3));
+}
+.honor-card:hover::after { opacity: 1; }
+.honor-glyph { font-size: 44px; margin-bottom: 20px; display: block; }
+.honor-title { font-size: 20px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 10px; }
+.honor-desc { font-size: 14px; color: var(--gray-2); line-height: 1.6; }
+.honor-prize {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ═══════════════════════════════════════
+   APPLY
+═══════════════════════════════════════ */
+.apply-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.criteria-list { display: flex; flex-direction: column; gap: 20px; margin-top: 40px; }
+.criteria-item {
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.criteria-num {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: var(--gold-4);
+  border: 0.5px solid var(--border-gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+  color: var(--gold); flex-shrink: 0;
+  margin-top: 1px;
+}
+.criteria-h { font-size: 16px; font-weight: 600; margin-bottom: 3px; }
+.criteria-p { font-size: 14px; color: var(--gray-2); line-height: 1.5; }
+
+/* Form */
+.apply-form-wrap {
+  background: var(--dark-2);
+  border: 0.5px solid var(--border);
+  border-radius: 24px;
+  padding: 40px;
+  position: sticky;
+  top: 72px;
+}
+.form-title { font-size: 24px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 6px; }
+.form-sub { font-size: 14px; color: var(--gray-2); margin-bottom: 28px; line-height: 1.5; }
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  background: var(--dark-3);
+  border: 0.5px solid var(--border);
+  color: var(--white);
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-family: var(--font);
+  margin-bottom: 10px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  -webkit-appearance: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--gold);
+  background: var(--dark-4);
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--gray-3); }
+.form-textarea { min-height: 88px; resize: vertical; }
+.form-select option { background: var(--dark-3); }
+
+.btn-apply-full {
+  width: 100%;
+  background: var(--gold);
+  color: var(--black);
+  border: none;
+  padding: 17px;
+  border-radius: 980px;
+  font-size: 17px;
+  font-weight: 600;
+  font-family: var(--font);
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background 0.2s, transform 0.2s var(--ease-spring), box-shadow 0.2s;
+}
+.btn-apply-full:hover {
+  background: var(--gold-2);
+  transform: scale(1.02);
+  box-shadow: 0 8px 30px rgba(244,169,0,0.45);
+}
+.btn-apply-full:active { transform: scale(0.98); }
+
+.form-note { font-size: 12px; color: var(--gray-3); text-align: center; margin-top: 10px; }
+
+.scarcity-indicator {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--dark-3);
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-top: 14px;
+  font-size: 13px;
+}
+.scarcity-indicator .spots { color: var(--terra); font-weight: 700; }
+
+/* ═══════════════════════════════════════
+   FINAL CTA
+═══════════════════════════════════════ */
+.final-cta {
+  text-align: center;
+  padding: 160px 24px;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 50%, rgba(244,169,0,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 80% 20%, rgba(193,102,107,0.06) 0%, transparent 50%),
+    var(--black);
+  position: relative;
+  overflow: hidden;
+}
+.final-cta .omega-bg {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 600px;
+  font-weight: 200;
+  color: rgba(244,169,0,0.04);
+  pointer-events: none;
+  line-height: 1;
+  user-select: none;
+}
+.final-cta .container { position: relative; }
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer {
+  background: var(--dark-1);
+  border-top: 0.5px solid var(--border);
+  padding: 40px 24px;
+}
+.footer-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 20px;
+}
+.footer-brand { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; }
+.footer-brand .omega { color: var(--gold); font-size: 18px; }
+.footer-copy { font-size: 12px; color: var(--gray-3); }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a {
+  font-size: 12px; color: var(--gray-3);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--white); }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 960px) {
+  .outcomes-bento { grid-template-columns: 1fr 1fr; }
+  .program-header { grid-template-columns: 1fr; gap: 48px; }
+  .speakers-grid { grid-template-columns: 1fr; }
+  .sv-layout { grid-template-columns: 1fr; gap: 48px; }
+  .honor-grid { grid-template-columns: 1fr; }
+  .apply-layout { grid-template-columns: 1fr; }
+  .apply-form-wrap { position: static; }
+}
+@media (max-width: 640px) {
+  .outcomes-bento { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: column; }
+  .hero-stat { border-right: none; border-bottom: 0.5px solid var(--border); }
+  .hero-stat:last-child { border-bottom: none; }
+  nav { padding: 0 16px; }
+  .nav-links { display: none; }
+  .speaker-stats { grid-template-columns: 1fr 1fr; }
+  .sv-right-panel { grid-template-columns: 1fr 1fr; }
+  .flywheel-visual { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="omega">Ω</span>
+    OmegaFounders
+  </a>
+  <ul class="nav-links">
+    <li><a href="#outcomes">Program</a></li>
+    <li><a href="#speakers">Speakers</a></li>
+    <li><a href="#sv">Silicon Valley</a></li>
+    <li><a href="#apply" class="nav-apply">Apply Now</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-eyebrow">Cohort 1 · Mountain View, CA · April 2026</div>
+
+  <div class="hero-omega-glyph">Ω</div>
+
+  <h1 class="hero-title">
+    12 Days.
+    <span class="line-2">Zero to AI Founder.</span>
+  </h1>
+
+  <p class="hero-sub">
+    The only Silicon Valley program where builders earn an official Anthropic certification,
+    ship a real product, close their first sale, and find their cofounders — all in 12 days.
+  </p>
+
+  <div class="hero-cta-group">
+    <a href="#apply" class="btn-cta-primary">Claim Your Spot →</a>
+    <a href="#outcomes" class="btn-cta-ghost">See what you earn <span class="arrow">›</span></a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-val">50</span>
+      <span class="hero-stat-lbl">Founders Max</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-val">12</span>
+      <span class="hero-stat-lbl">Days Intensive</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-val">$0</span>
+      <span class="hero-stat-lbl">Cost to Join</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-val">∞</span>
+      <span class="hero-stat-lbl">Upside</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TICKER ══ -->
+<div class="location-bar">
+  <div class="location-ticker">
+    <span class="location-ticker-item"><span class="ticker-dot">●</span> <strong>Mountain View, CA</strong> — Heart of Silicon Valley</span>
+    <span class="location-ticker-item"><span class="ticker-dot">●</span> In-person + Online for global founders</span>
+    <span class="location-ticker-item"><span class="ticker-dot">●</span> <strong>Claude Certified Architect</strong> — Official Anthropic credential</span>
+    <span class="location-ticker-item"><span class="ticker-dot">●</span> <strong>Sam Wong</strong> · 21 Startup Secrets · Band of Angels</span>
+    <span class="location-ticker-item"><span class="ticker-dot">●</span> <strong>Richard Hua</strong> · Former Amazon Worldwide Head of EPIC</span>
+    <span class="location-ticker-item"><span class="ticker-dot">●</span> Cohort 1 · 50 spots · Applications open</span>
+    <!-- duplicate for seamless loop -->
+    <span class="location-ticker-item"><span class="ticker-dot">●</span> <strong>Mountain View, CA</strong> — Heart of Silicon Valley</span>
+    <span class="location-ticker-item"><span class="ticker-dot">●</span> In-person + Online for global founders</span>
+    <span class="location-ticker-item"><span class="ticker-dot">●</span> <strong>Claude Certified Architect</strong> — Official Anthropic credential</span>
+    <span class="location-ticker-item"><span class="ticker-dot">●</span> <strong>Sam Wong</strong> · 21 Startup Secrets · Band of Angels</span>
+    <span class="location-ticker-item"><span class="ticker-dot">●</span> <strong>Richard Hua</strong> · Former Amazon Worldwide Head of EPIC</span>
+    <span class="location-ticker-item"><span class="ticker-dot">●</span> Cohort 1 · 50 spots · Applications open</span>
+  </div>
+</div>
+
+<!-- ══ OUTCOMES ══ -->
+<section class="section section-dark" id="outcomes">
+  <div class="container">
+    <div class="outcomes-intro reveal">
+      <span class="eyebrow">What top performers earn</span>
+      <h2 class="headline-xl">Five targets.<br><span class="text-gold">Yours to achieve.</span></h2>
+      <p class="subhead">These aren't handed to you. They're earned. We build the environment — pressure, mentorship, Silicon Valley network. The results are on you.</p>
+      <br>
+      <span class="disclaimer-pill">⚡ Target outcomes for top performers — not guarantees. Founders who show up and ship will win them.</span>
+    </div>
+
+    <div class="outcomes-bento">
+      <div class="outcome-tile reveal reveal-delay-1">
+        <span class="tile-icon">🏛️</span>
+        <div class="tile-title">Claude Certified Architect</div>
+        <div class="tile-desc">Pass Anthropic's official Foundations exam. The credential that signals you architect production-grade AI systems — not just prompts.</div>
+        <span class="tile-badge">Earn It</span>
+      </div>
+      <div class="outcome-tile reveal reveal-delay-2">
+        <span class="tile-icon">⚙️</span>
+        <div class="tile-title">1 Real AI Product, Live</div>
+        <div class="tile-desc">Not a tutorial. Not a prototype. A shipped, documented, publicly accessible AI product you built in 10 days. Permanent proof of work.</div>
+        <span class="tile-badge">Ship It</span>
+      </div>
+      <div class="outcome-tile reveal reveal-delay-3">
+        <span class="tile-icon">💵</span>
+        <div class="tile-title">First $1,000 in Revenue</div>
+        <div class="tile-desc">The moment your first dollar arrives is the moment you become a founder, not a student. We build the audience. You close the sale.</div>
+        <span class="tile-badge">Close It</span>
+      </div>
+      <div class="outcome-tile reveal reveal-delay-4">
+        <span class="tile-icon">🤝</span>
+        <div class="tile-title">A Cofounding Team</div>
+        <div class="tile-desc">50 builders from around the world, curated across skill archetypes: engineers, operators, sellers, researchers. The best teams are forged under pressure — not found on a job board.</div>
+        <span class="tile-badge">Find Them</span>
+      </div>
+      <div class="outcome-tile reveal reveal-delay-5">
+        <span class="tile-icon">🌐</span>
+        <div class="tile-title">AI-Native Company</div>
+        <div class="tile-desc">Marketing &amp; Sales. Research. Engineering. Finance. Your company is born AI-native across every function — not bolted on later when it's too expensive to fix.</div>
+        <span class="tile-badge">Found It</span>
+      </div>
+      <div class="outcome-tile featured reveal reveal-delay-5">
+        <span class="tile-icon">✍️</span>
+        <div class="tile-title">Paul Wu's Recommendation</div>
+        <div class="tile-desc">Physical AI engineer, co-founder, Mountain View CA. Top performers get Paul's personal introduction to his network of Silicon Valley operators, investors, and founders.</div>
+        <span class="tile-badge">Earn His Trust</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROGRAM ══ -->
+<section class="section section-black" id="program">
+  <div class="container">
+    <div class="program-header">
+      <div class="reveal">
+        <span class="eyebrow">The 12-Day Structure</span>
+        <h2 class="headline">Ten days<br>build. Two days<br>present & launch.</h2>
+        <p class="subhead">Days 1–10: one exam domain per day — learn, build, post. Day 11: every founder demos their AI product to sponsors and investors. Day 12: Sam Wong keynote + Richard Hua workshop + graduation.</p>
+        <div class="flywheel-visual">
+          <div class="flywheel-card">
+            <span class="flywheel-icon">📖</span>
+            <div class="flywheel-title">Learn</div>
+            <div class="flywheel-desc">45 min deep dive into that day's exam domain</div>
+          </div>
+          <div class="flywheel-card">
+            <span class="flywheel-icon">⚙️</span>
+            <div class="flywheel-title">Build</div>
+            <div class="flywheel-desc">60 min coding that concept into the live product</div>
+          </div>
+          <div class="flywheel-card">
+            <span class="flywheel-icon">📢</span>
+            <div class="flywheel-title">Teach</div>
+            <div class="flywheel-desc">30 min blog post + LinkedIn + YouTube script</div>
+          </div>
+          <div class="flywheel-card">
+            <span class="flywheel-icon">🔁</span>
+            <div class="flywheel-title">Deeper</div>
+            <div class="flywheel-desc">Teaching reveals gaps → back to learn with new questions</div>
+          </div>
+        </div>
+      </div>
+      <div class="days-list reveal reveal-delay-2">
+        <div class="day-row">
+          <div class="day-num-badge">01</div>
+          <div class="day-info">
+            <div class="day-name">Agentic Loops</div>
+            <div class="day-sub">The heartbeat of every Claude agent</div>
+          </div>
+          <div class="day-domain-badge">D1 · 27%</div>
+        </div>
+        <div class="day-row">
+          <div class="day-num-badge">02</div>
+          <div class="day-info">
+            <div class="day-name">Multi-Agent Orchestration</div>
+            <div class="day-sub">Coordinator & subagent patterns</div>
+          </div>
+          <div class="day-domain-badge">D1</div>
+        </div>
+        <div class="day-row">
+          <div class="day-num-badge">03</div>
+          <div class="day-info">
+            <div class="day-name">Tool Design & MCP</div>
+            <div class="day-sub">The agent's hands</div>
+          </div>
+          <div class="day-domain-badge">D2 · 18%</div>
+        </div>
+        <div class="day-row">
+          <div class="day-num-badge">04</div>
+          <div class="day-info">
+            <div class="day-name">Hooks & Enforcement</div>
+            <div class="day-sub">Production guardrails that don't lie</div>
+          </div>
+          <div class="day-domain-badge">D1</div>
+        </div>
+        <div class="day-row">
+          <div class="day-num-badge">05</div>
+          <div class="day-info">
+            <div class="day-name">Claude Code Config</div>
+            <div class="day-sub">CLAUDE.md as your AI's operating system</div>
+          </div>
+          <div class="day-domain-badge">D3 · 20%</div>
+        </div>
+        <div class="day-row">
+          <div class="day-num-badge">06</div>
+          <div class="day-info">
+            <div class="day-name">CI/CD & Plan Mode</div>
+            <div class="day-sub">The builder's production workflow</div>
+          </div>
+          <div class="day-domain-badge">D3</div>
+        </div>
+        <div class="day-row">
+          <div class="day-num-badge">07</div>
+          <div class="day-info">
+            <div class="day-name">Prompt Engineering</div>
+            <div class="day-sub">Few-shot mastery & structured output</div>
+          </div>
+          <div class="day-domain-badge">D4 · 20%</div>
+        </div>
+        <div class="day-row">
+          <div class="day-num-badge">08</div>
+          <div class="day-info">
+            <div class="day-name">Validation & Batch</div>
+            <div class="day-sub">Production extraction pipelines</div>
+          </div>
+          <div class="day-domain-badge">D4</div>
+        </div>
+        <div class="day-row">
+          <div class="day-num-badge">09</div>
+          <div class="day-info">
+            <div class="day-name">Context & Reliability</div>
+            <div class="day-sub">Systems that don't break at scale</div>
+          </div>
+          <div class="day-domain-badge">D5 · 15%</div>
+        </div>
+        <div class="day-row">
+          <div class="day-num-badge">10</div>
+          <div class="day-info">
+            <div class="day-name">Exam + Final Ship</div>
+            <div class="day-sub">Pass the exam · Polish the product · Prep your pitch</div>
+          </div>
+          <div class="day-domain-badge">D1–D5</div>
+        </div>
+        <div class="day-row" style="background: linear-gradient(90deg, rgba(244,169,0,0.04), transparent);">
+          <div class="day-num-badge" style="background: var(--gold-3); border-color: var(--border-gold); color: var(--gold-2);">11</div>
+          <div class="day-info">
+            <div class="day-name">Founder Demo Day</div>
+            <div class="day-sub">Every founder pitches · Sponsors & investors in the room</div>
+          </div>
+          <div class="day-domain-badge" style="color: var(--gold-2); background: var(--gold-4);">🎯 Demo</div>
+        </div>
+        <div class="day-row day-final">
+          <div class="day-num-badge">12</div>
+          <div class="day-info">
+            <div class="day-name">Speakers + Graduation</div>
+            <div class="day-sub">Sam Wong keynote · Richard Hua workshop · OmegaFounders launch</div>
+          </div>
+          <div class="day-domain-badge" style="color: var(--gold-2); background: var(--gold-4);">🏆 Grad</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOST ══ -->
+<div class="host-section">
+  <div class="container">
+    <div class="host-inner reveal">
+      <div class="host-ava">🏗️</div>
+      <div class="host-meta">
+        <div class="host-label">Your Host & Lead Mentor</div>
+        <div class="host-name">Paul Wu</div>
+        <div class="host-desc">Physical AI Engineer · Co-Founder · Mountain View, CA · love12xfuture · Claude Certified Architect</div>
+      </div>
+      <div class="host-quote">
+        "I did this 10-day sprint myself. I passed the exam, shipped the product, and built the plugin. Now I want to take 50 people through it with me — and build something none of us could make alone."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SPEAKERS ══ -->
+<section class="section section-dark" id="speakers">
+  <div class="container">
+    <div class="reveal" style="margin-bottom: 64px;">
+      <span class="eyebrow">Invited Speakers & Mentors</span>
+      <h2 class="headline">30 years of Silicon Valley.<br><span class="text-gold">In the room with you.</span></h2>
+      <p class="subhead">Not recorded lectures. Live sessions with founders who have built, sold, and started over — sharing what the books and courses can't teach.</p>
+    </div>
+
+    <div class="speakers-grid">
+
+      <!-- SAM WONG -->
+      <div class="speaker-card reveal reveal-delay-1">
+        <div class="speaker-top">
+          <div class="speaker-avatar-wrap">📘</div>
+          <div class="speaker-name">Sam Wong</div>
+          <div class="speaker-role">Author · "21 Secrets of Successful Startups"</div>
+          <div class="speaker-org">CEO, FundableStartups.com · Band of Angels Member</div>
+        </div>
+        <div class="speaker-body">
+          <div class="speaker-stats">
+            <div class="sp-stat">
+              <span class="sp-stat-val">5×</span>
+              <span class="sp-stat-lbl">CEO / CTO</span>
+            </div>
+            <div class="sp-stat">
+              <span class="sp-stat-val">3</span>
+              <span class="sp-stat-lbl">Acquisitions</span>
+            </div>
+            <div class="sp-stat">
+              <span class="sp-stat-val">30+</span>
+              <span class="sp-stat-lbl">Years in SV</span>
+            </div>
+          </div>
+          <p class="speaker-bio">5× startup CEO & CTO with three successful acquisitions. Sam's 30 years of Silicon Valley pattern recognition — successes, failures, near-deaths, and pivots — are distilled into his book and his live advisory work. He helps founders avoid the fatal mistakes before they happen.</p>
+          <div class="speaker-tags">
+            <span class="speaker-tag">Startup Execution</span>
+            <span class="speaker-tag">Fundraising</span>
+            <span class="speaker-tag">Product-Market Fit</span>
+            <span class="speaker-tag">M&A</span>
+            <span class="speaker-tag">Band of Angels</span>
+          </div>
+          <div class="speaker-session-box">
+            <span class="session-label">Demo Day Keynote</span>
+            <div class="session-title">"21 Startup Secrets for AI-Native Founders"</div>
+            <div class="session-desc">Live mentorship + direct feedback on cohort projects · Band of Angels introductions for top teams</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RICHARD HUA -->
+      <div class="speaker-card reveal reveal-delay-2">
+        <div class="speaker-top">
+          <div class="speaker-avatar-wrap">⚡</div>
+          <div class="speaker-name">Richard Hua</div>
+          <div class="speaker-role">Chief EQ Officer · Global Keynote Speaker</div>
+          <div class="speaker-org">Founder, EPIQ Leadership · Former Amazon Worldwide Head of EPIC</div>
+        </div>
+        <div class="speaker-body">
+          <div class="speaker-stats">
+            <div class="sp-stat">
+              <span class="sp-stat-val">1.5M</span>
+              <span class="sp-stat-lbl">People Reached</span>
+            </div>
+            <div class="sp-stat">
+              <span class="sp-stat-val">600M</span>
+              <span class="sp-stat-lbl">Alexa Devices</span>
+            </div>
+            <div class="sp-stat">
+              <span class="sp-stat-val">10K+</span>
+              <span class="sp-stat-lbl">Audience Size</span>
+            </div>
+          </div>
+          <p class="speaker-bio">Built the world's largest corporate EQ community — 70,000 members at Amazon. As expert advisor to the Alexa team, he helped embed empathy into 600M+ devices. He speaks at Stanford, Wharton, UC Berkeley — and believes EQ is the only competitive advantage AI can't automate away.</p>
+          <div class="speaker-tags">
+            <span class="speaker-tag">Emotional Intelligence</span>
+            <span class="speaker-tag">AI + Human Leadership</span>
+            <span class="speaker-tag">Amazon EPIC</span>
+            <span class="speaker-tag">Team Psychology</span>
+            <span class="speaker-tag">Forbes Featured</span>
+          </div>
+          <div class="speaker-session-box">
+            <span class="session-label">Live Workshop</span>
+            <div class="session-title">"Leading Your AI Team with EPIQ"</div>
+            <div class="session-desc">The EQ layer that determines whether a cofounding team ships or implodes · Continues in his Maven cohort (April 18–19)</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SV ADVANTAGE ══ -->
+<section class="section section-black" id="sv">
+  <div class="container">
+    <div class="sv-layout">
+      <div class="reveal">
+        <span class="eyebrow">Why Silicon Valley</span>
+        <p class="sv-quote-block">
+          People fly from Lagos, Seoul,<br>São Paulo, and Berlin<br>
+          just to be <em>near it.</em><br>
+          You don't have to fly.<br>
+          You just have to apply.
+        </p>
+        <div class="sv-benefits">
+          <div class="sv-benefit">
+            <div class="sv-benefit-icon">📍</div>
+            <div>
+              <div class="sv-benefit-h">Mountain View, CA</div>
+              <div class="sv-benefit-p">Google's backyard. The Computer History Museum. The highest density of builders per square mile that exists anywhere on earth.</div>
+            </div>
+          </div>
+          <div class="sv-benefit">
+            <div class="sv-benefit-icon">🤝</div>
+            <div>
+              <div class="sv-benefit-h">Sponsor Deal Flow</div>
+              <div class="sv-benefit-p">Industrial sponsors join Demo Day to see the best AI founders first. Your presentation is their sourcing event.</div>
+            </div>
+          </div>
+          <div class="sv-benefit">
+            <div class="sv-benefit-icon">🌍</div>
+            <div>
+              <div class="sv-benefit-h">Global by Design</div>
+              <div class="sv-benefit-p">In-person in Mountain View. Online for world-class talent who can't be here. The cofounder you find might be from your city — or Tokyo or Lagos.</div>
+            </div>
+          </div>
+          <div class="sv-benefit">
+            <div class="sv-benefit-icon">🏆</div>
+            <div>
+              <div class="sv-benefit-h">"Built in Silicon Valley"</div>
+              <div class="sv-benefit-p">That sentence, in your LinkedIn bio and pitch deck, opens doors that credentials alone don't. It signals you played the real game.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sv-right-panel reveal reveal-delay-2">
+        <div class="sv-panel-card">
+          <span class="sv-panel-val">50</span>
+          <span class="sv-panel-lbl">Global founders per cohort</span>
+        </div>
+        <div class="sv-panel-card">
+          <span class="sv-panel-val">12</span>
+          <span class="sv-panel-lbl">Days in the Sprint</span>
+        </div>
+        <div class="sv-panel-card">
+          <span class="sv-panel-val">5</span>
+          <span class="sv-panel-lbl">Exam domains mastered</span>
+        </div>
+        <div class="sv-panel-card">
+          <span class="sv-panel-val">$1K</span>
+          <span class="sv-panel-lbl">Target first revenue</span>
+        </div>
+        <div class="sv-panel-card">
+          <span class="sv-panel-val">1</span>
+          <span class="sv-panel-lbl">Official Anthropic credential</span>
+        </div>
+        <div class="sv-panel-card">
+          <span class="sv-panel-val">∞</span>
+          <span class="sv-panel-lbl">What happens after</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HALL OF HONOR ══ -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="reveal" style="max-width: 600px;">
+      <span class="eyebrow">Recognition</span>
+      <h2 class="headline">The Hall of Honor</h2>
+      <p class="subhead">Every cohort produces legends. The best performers get permanently featured — and introduced to what comes next.</p>
+    </div>
+    <div class="honor-grid">
+      <div class="honor-card reveal reveal-delay-1">
+        <span class="honor-glyph">🏗️</span>
+        <div class="honor-title">The Builder</div>
+        <div class="honor-desc">First founder to ship a live, publicly accessible AI product during the sprint. Permanent profile on the OmegaFounders alumni wall. Featured case study across all channels.</div>
+        <div class="honor-prize">Alumni Profile · Case Study</div>
+      </div>
+      <div class="honor-card reveal reveal-delay-2">
+        <span class="honor-glyph">💰</span>
+        <div class="honor-title">The Closer</div>
+        <div class="honor-desc">First founder to hit $1,000 in online revenue during the 10 days. Paul Wu's personal introduction to investors in his Silicon Valley network.</div>
+        <div class="honor-prize">Investor Introduction</div>
+      </div>
+      <div class="honor-card reveal reveal-delay-3">
+        <span class="honor-glyph">🤝</span>
+        <div class="honor-title">The Team</div>
+        <div class="honor-desc">The strongest cofounding team formed during the cohort. Sam Wong's personal introduction to one investor in his Band of Angels network.</div>
+        <div class="honor-prize">Band of Angels Intro</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ APPLY ══ -->
+<section class="section section-black" id="apply">
+  <div class="container">
+    <div class="apply-layout">
+      <div class="reveal">
+        <span class="eyebrow">Selection Criteria</span>
+        <h2 class="headline">50 spots.<br>Who earns them?</h2>
+        <p class="subhead">Not selecting for credentials. Selecting for builders who are all-in for 10 days and have something real to build.</p>
+
+        <div class="criteria-list">
+          <div class="criteria-item">
+            <div class="criteria-num">1</div>
+            <div>
+              <div class="criteria-h">You have a problem worth solving</div>
+              <div class="criteria-p">You know what you'd build an AI company around. Doesn't need to be perfect — needs to be real and specific.</div>
+            </div>
+          </div>
+          <div class="criteria-item">
+            <div class="criteria-num">2</div>
+            <div>
+              <div class="criteria-h">You bring a skill the team needs</div>
+              <div class="criteria-p">Builder, seller, researcher, designer, domain expert, operator — all needed. We deliberately recruit across skill archetypes.</div>
+            </div>
+          </div>
+          <div class="criteria-item">
+            <div class="criteria-num">3</div>
+            <div>
+              <div class="criteria-h">You're available for all 10 days</div>
+              <div class="criteria-p">2–3 hours minimum, daily. No lurkers. No partial attendance. Your presence is the price of admission.</div>
+            </div>
+          </div>
+          <div class="criteria-item">
+            <div class="criteria-num">4</div>
+            <div>
+              <div class="criteria-h">You'll build in public</div>
+              <div class="criteria-p">Daily posts, open GitHub, teachable outputs. Your learning becomes the marketing. That's the deal.</div>
+            </div>
+          </div>
+          <div class="criteria-item">
+            <div class="criteria-num">5</div>
+            <div>
+              <div class="criteria-h">You want a cofounder, not just a certificate</div>
+              <div class="criteria-p">The cert is the floor, not the ceiling. This is a founding event. If you're only here for the credential, this isn't your cohort.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2">
+        <div class="apply-form-wrap">
+          <div class="form-title">Apply for Cohort 1</div>
+          <div class="form-sub">50 spots. Mountain View + Online. Free to join — earned to keep.</div>
+          <input class="form-input" type="text" placeholder="Full name" />
+          <input class="form-input" type="email" placeholder="Email address" />
+          <input class="form-input" type="text" placeholder="LinkedIn profile URL" />
+          <input class="form-input" type="text" placeholder="City / Country" />
+          <select class="form-select">
+            <option value="" disabled selected>Your primary skill →</option>
+            <option>AI / ML Engineer</option>
+            <option>Software Developer</option>
+            <option>Product Manager</option>
+            <option>Sales / Growth</option>
+            <option>Researcher</option>
+            <option>Domain Expert</option>
+            <option>Designer / UX</option>
+            <option>Finance / Operations</option>
+          </select>
+          <textarea class="form-textarea" placeholder="What problem would you build an AI company to solve? (1–3 sentences)"></textarea>
+          <button class="btn-apply-full" onclick="this.textContent='Application received 🔥'; this.style.background='#2d6a2d'; this.style.color='white';">Apply for My Spot →</button>
+          <div class="form-note">No cost. No commitment until accepted. Every application reviewed personally.</div>
+          <div class="scarcity-indicator">
+            <span>Cohort 1 seats</span>
+            <span class="spots">50 spots · Waitlist forming</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ══ -->
+<section class="final-cta">
+  <div class="omega-bg">Ω</div>
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Forged in Silicon Valley</span>
+      <h2 class="headline-xl" style="max-width: 700px; margin: 0 auto 24px;">Yours to become.</h2>
+      <p class="subhead" style="margin: 0 auto 48px; text-align: center;">The desert shall rejoice and blossom. Twelve days from now, you're on the other side.</p>
+      <a href="#apply" class="btn-cta-primary" style="font-size: 19px; padding: 18px 44px;">Apply for Cohort 1 →</a>
+      <p style="margin-top: 20px; font-size: 13px; color: var(--gray-3);">Mountain View, CA · April 2026 · 12 Days · 50 founders · Free</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="omega">Ω</span> OmegaFounders
+    </div>
+    <div class="footer-copy">Forged in Silicon Valley · Mountain View, CA · Cohort 1 · 2026</div>
+    <div class="footer-links">
+      <a href="#program">Program</a>
+      <a href="#speakers">Speakers</a>
+      <a href="https://www.fundablestartups.com" target="_blank">Sam Wong</a>
+      <a href="https://richardhua.co" target="_blank">Richard Hua</a>
+      <a href="#apply">Apply</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ SCROLL ANIMATION ENGINE ══ -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Counter animation for hero stats
+function animateCounter(el, target, duration = 1200, suffix = '') {
+  const isSpecial = isNaN(target);
+  if (isSpecial) return;
+  let start = 0;
+  const step = (timestamp) => {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(eased * target) + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// Trigger counters when hero is visible
+setTimeout(() => {
+  document.querySelectorAll('.hero-stat-val').forEach(el => {
+    const text = el.textContent;
+    if (text === '50') animateCounter(el, 50);
+    if (text === '12') animateCounter(el, 12);
+  });
+}, 1200);
+
+// Nav background on scroll
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    nav.style.background = 'rgba(28,15,0,0.94)';
+  } else {
+    nav.style.background = 'rgba(28,15,0,0.75)';
+  }
+}, { passive: true });
+</script>
+
+</body>
+</html>

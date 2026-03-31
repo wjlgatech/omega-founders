@@ -1,0 +1,117 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  # ── Validate HTML landing pages ──────────────────────────────────────────
+  validate-html:
+    name: Validate HTML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install html5validator
+        run: pip install html5validator
+
+      - name: Validate landing pages
+        run: |
+          html5validator --root landing/ --also-check-css \
+            --ignore "Element .* not allowed" \
+            --log-level WARNING
+        continue-on-error: true   # warn, don't block — content > perfect markup
+
+  # ── Check daily log structure ─────────────────────────────────────────────
+  check-daily-logs:
+    name: Daily Log Structure Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2   # need to diff against previous commit
+
+      - name: Find new daily log files
+        id: find-logs
+        run: |
+          NEW_LOGS=$(git diff --name-only HEAD~1 HEAD -- 'learn-build-teach/**/*.md' | grep -v TEMPLATE.md || true)
+          echo "new_logs=$NEW_LOGS" >> $GITHUB_OUTPUT
+          echo "New logs: $NEW_LOGS"
+
+      - name: Check required sections in daily logs
+        if: steps.find-logs.outputs.new_logs != ''
+        run: |
+          FAILED=0
+          for f in ${{ steps.find-logs.outputs.new_logs }}; do
+            echo "Checking $f..."
+            if ! grep -q "## What I Learned" "$f"; then
+              echo "❌ $f missing '## What I Learned' section"
+              FAILED=1
+            fi
+            if ! grep -q "## What I Built" "$f"; then
+              echo "❌ $f missing '## What I Built' section"
+              FAILED=1
+            fi
+            if ! grep -q "## Where I Posted" "$f"; then
+              echo "❌ $f missing '## Where I Posted' section"
+              FAILED=1
+            fi
+          done
+          if [ "$FAILED" = "1" ]; then
+            echo "One or more daily logs are missing required sections."
+            echo "See learn-build-teach/TEMPLATE.md for the format."
+            exit 1
+          fi
+          echo "✅ All daily logs have required sections."
+
+  # ── Check no secrets committed ────────────────────────────────────────────
+  secret-scan:
+    name: Secret Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Scan for secrets
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --only-verified
+        continue-on-error: true   # warn but don't break CI on false positives
+
+  # ── Markdown link check ───────────────────────────────────────────────────
+  check-links:
+    name: Check Markdown Links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check links in README and docs
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          use-verbose-mode: 'no'
+          config-file: '.github/mlc-config.json'
+        continue-on-error: true
+
+  # ── Summary ───────────────────────────────────────────────────────────────
+  ci-summary:
+    name: CI Summary
+    needs: [validate-html, check-daily-logs, secret-scan, check-links]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Report status
+        run: |
+          echo "## CI Results" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| HTML Validation | ${{ needs.validate-html.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Daily Log Structure | ${{ needs.check-daily-logs.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Secret Scan | ${{ needs.secret-scan.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Link Check | ${{ needs.check-links.result }} |" >> $GITHUB_STEP_SUMMARY
