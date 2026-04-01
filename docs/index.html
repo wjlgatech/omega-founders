@@ -1683,7 +1683,7 @@ footer {
             data.append('entry.1928681674', document.getElementById('field-city').value);
             data.append('entry.541727637', document.getElementById('field-skill').value);
             data.append('entry.1301087706', document.getElementById('field-problem').value);
-            data.append('entry.1153554145', document.getElementById('field-email').value);
+            data.append('emailAddress', document.getElementById('field-email').value);
             fetch(url, { method: 'POST', body: data, mode: 'no-cors' });
             btn.textContent = 'Application received \uD83D\uDD25';
             btn.style.background = '#2d6a2d';
