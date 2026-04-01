@@ -1678,11 +1678,11 @@ footer {
             var FORM_ID = '1FAIpQLScLJpEczQgSujygCL8fo0py92U40qQoe63NIaSMrFoPFn3hKA';
             var url = 'https://docs.google.com/forms/d/e/' + FORM_ID + '/formResponse';
             var data = new URLSearchParams();
-            data.append('entry.307405435', document.getElementById('field-name').value);
-            data.append('entry.1758408207', document.getElementById('field-linkedin').value);
-            data.append('entry.1928681674', document.getElementById('field-city').value);
-            data.append('entry.541727637', document.getElementById('field-skill').value);
-            data.append('entry.1301087706', document.getElementById('field-problem').value);
+            data.append('entry.343527056', document.getElementById('field-name').value);
+            data.append('entry.688628871', document.getElementById('field-linkedin').value);
+            data.append('entry.791641576', document.getElementById('field-city').value);
+            data.append('entry.748400534', document.getElementById('field-skill').value);
+            data.append('entry.1200741833', document.getElementById('field-problem').value);
             data.append('emailAddress', document.getElementById('field-email').value);
             fetch(url, { method: 'POST', body: data, mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
             btn.textContent = 'Application received \uD83D\uDD25';
