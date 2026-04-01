@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/OmegaFounders.png" alt="OmegaFounders Logo" width="200" />
+</p>
+
 # OmegaFounders — Silicon Valley AI Cohort
 
 **The AI job market is splitting in two.**
