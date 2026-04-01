@@ -1677,6 +1677,7 @@ footer {
             var btn = document.getElementById('apply-btn');
             var FORM_ID = '1FAIpQLScLJpEczQgSujygCL8fo0py92U40qQoe63NIaSMrFoPFn3hKA';
             var url = 'https://docs.google.com/forms/d/e/' + FORM_ID + '/formResponse';
+            var fbzx = Math.floor(Math.random() * 9e18).toString();
             var data = new URLSearchParams();
             data.append('entry.343527056', document.getElementById('field-name').value);
             data.append('entry.688628871', document.getElementById('field-linkedin').value);
@@ -1684,7 +1685,10 @@ footer {
             data.append('entry.748400534', document.getElementById('field-skill').value);
             data.append('entry.1200741833', document.getElementById('field-problem').value);
             data.append('emailAddress', document.getElementById('field-email').value);
-            fetch(url, { method: 'POST', body: data, mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+            data.append('fvv', '1');
+            data.append('pageHistory', '0');
+            data.append('fbzx', fbzx);
+            fetch(url, { method: 'POST', body: data, mode: 'no-cors' });
             btn.textContent = 'Application received \uD83D\uDD25';
             btn.style.background = '#2d6a2d';
             btn.style.color = 'white';
