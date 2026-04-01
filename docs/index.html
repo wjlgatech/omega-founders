@@ -1645,29 +1645,53 @@ footer {
         <div class="apply-form-wrap">
           <div class="form-title">Apply for Cohort 1</div>
           <div class="form-sub">50 spots. Mountain View + Online. Free to join — earned to keep.</div>
-          <input class="form-input" type="text" placeholder="Full name" />
-          <input class="form-input" type="email" placeholder="Email address" />
-          <input class="form-input" type="text" placeholder="LinkedIn profile URL" />
-          <input class="form-input" type="text" placeholder="City / Country" />
-          <select class="form-select">
-            <option value="" disabled selected>Your primary skill →</option>
-            <option>AI / ML Engineer</option>
-            <option>Software Developer</option>
-            <option>Product Manager</option>
-            <option>Sales / Growth</option>
-            <option>Researcher</option>
-            <option>Domain Expert</option>
-            <option>Designer / UX</option>
-            <option>Finance / Operations</option>
-          </select>
-          <textarea class="form-textarea" placeholder="What problem would you build an AI company to solve? (1–3 sentences)"></textarea>
-          <button class="btn-apply-full" onclick="this.textContent='Application received 🔥'; this.style.background='#2d6a2d'; this.style.color='white';">Apply for My Spot →</button>
+          <form id="apply-form">
+            <input id="field-name" class="form-input" type="text" placeholder="Full name" required />
+            <input id="field-email" class="form-input" type="email" placeholder="Email address" required />
+            <input id="field-linkedin" class="form-input" type="text" placeholder="LinkedIn profile URL" required />
+            <input id="field-city" class="form-input" type="text" placeholder="City / Country" required />
+            <select id="field-skill" class="form-select" required>
+              <option value="" disabled selected>Your primary skill →</option>
+              <option>AI / ML Engineer</option>
+              <option>Software Developer</option>
+              <option>Product Manager</option>
+              <option>Sales / Growth</option>
+              <option>Researcher</option>
+              <option>Domain Expert</option>
+              <option>Designer / UX</option>
+              <option>Finance / Operations</option>
+            </select>
+            <textarea id="field-problem" class="form-textarea" placeholder="What problem would you build an AI company to solve? (1–3 sentences)" required></textarea>
+            <button id="apply-btn" class="btn-apply-full" type="submit">Apply for My Spot →</button>
+          </form>
           <div class="form-note">No cost. No commitment until accepted. Every application reviewed personally.</div>
           <div class="scarcity-indicator">
             <span>Cohort 1 seats</span>
             <span class="spots">50 spots · Waitlist forming</span>
           </div>
         </div>
+        <iframe name="hidden-gform" style="display:none;"></iframe>
+        <script>
+          document.getElementById('apply-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var btn = document.getElementById('apply-btn');
+            var FORM_ID = '1FAIpQLScLJpEczQgSujygCL8fo0py92U40qQoe63NIaSMrFoPFn3hKA';
+            var url = 'https://docs.google.com/forms/d/e/' + FORM_ID + '/formResponse';
+            var data = new FormData();
+            data.append('entry.307405435', document.getElementById('field-name').value);
+            data.append('entry.1758408207', document.getElementById('field-linkedin').value);
+            data.append('entry.1928681674', document.getElementById('field-city').value);
+            data.append('entry.541727637', document.getElementById('field-skill').value);
+            data.append('entry.1301087706', document.getElementById('field-problem').value);
+            data.append('entry.1153554145', document.getElementById('field-email').value);
+            fetch(url, { method: 'POST', body: data, mode: 'no-cors' });
+            btn.textContent = 'Application received \uD83D\uDD25';
+            btn.style.background = '#2d6a2d';
+            btn.style.color = 'white';
+            btn.disabled = true;
+            this.querySelectorAll('input, select, textarea').forEach(function(el) { el.disabled = true; });
+          });
+        </script>
       </div>
     </div>
   </div>
