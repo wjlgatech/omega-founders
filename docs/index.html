@@ -4,30 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OmegaFounders — Forged in Silicon Valley</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
 :root {
-  --gold: #D4A843;
-  --gold-2: #F0C45A;
-  --gold-3: rgba(212,168,67,0.18);
-  --gold-4: rgba(212,168,67,0.07);
-  --black: #000000;
-  --near-black: #060608;
-  --dark-1: #0d0d0f;
-  --dark-2: #141417;
-  --dark-3: #1c1c1f;
-  --dark-4: #232326;
-  --white: #ffffff;
-  --off-white: #f5f5f7;
-  --gray-1: #e8e8ed;
-  --gray-2: #a1a1a6;
-  --gray-3: #6e6e73;
-  --gray-4: #3a3a3c;
-  --border: rgba(255,255,255,0.08);
-  --border-gold: rgba(212,168,67,0.25);
-  --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+  --gold: #e8956d;
+  --gold-2: #f0a882;
+  --gold-3: rgba(232,149,109,0.18);
+  --gold-4: rgba(232,149,109,0.07);
+  --black: #0d0f12;
+  --near-black: #0d0f12;
+  --dark-1: #0d0f12;
+  --dark-2: #141618;
+  --dark-3: #1c1f23;
+  --dark-4: #23272d;
+  --white: #f0ede8;
+  --off-white: #f0ede8;
+  --gray-1: #f0ede8;
+  --gray-2: #b8b4ae;
+  --gray-3: #6b6762;
+  --gray-4: #3a3835;
+  --border: rgba(255,255,255,0.06);
+  --border-gold: rgba(232,149,109,0.25);
+  --font: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-headline: 'Cabinet Grotesk', 'Inter Variable', 'Inter', sans-serif;
   --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -38,6 +43,13 @@ body {
   color: var(--white);
   overflow-x: hidden;
   cursor: default;
+}
+
+h1, h2, h3, h4, h5, h6,
+.hero-title, .headline, .headline-xl, .host-name, .speaker-name, .form-title, .pay-price-big,
+.tile-title, .flywheel-title, .honor-title, .sv-quote-block, .pricing-price {
+  font-family: var(--font-headline);
+  letter-spacing: -0.03em;
 }
 
 /* ═══════════════════════════════════════
@@ -70,17 +82,18 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  background: rgba(0,0,0,0.72);
+  background: rgba(13,15,18,0.72);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 0.5px solid rgba(255,255,255,0.1);
+  border-bottom: 0.5px solid rgba(255,255,255,0.12);
   transition: background 0.3s;
 }
 
 .nav-logo {
   display: flex; align-items: center; gap: 8px;
   text-decoration: none; color: var(--white);
-  font-size: 17px; font-weight: 600; letter-spacing: -0.01em;
+  font-size: 17px; font-weight: 600; letter-spacing: -0.02em;
+  font-family: var(--font-headline);
 }
 .nav-logo .omega { color: var(--gold); font-size: 20px; font-weight: 300; }
 
@@ -97,9 +110,9 @@ nav {
 
 .nav-apply {
   background: var(--gold);
-  color: var(--black) !important;
+  color: #0d0f12 !important;
   padding: 7px 16px;
-  border-radius: 980px;
+  border-radius: 6px;
   font-weight: 600 !important;
   font-size: 13px !important;
   transition: background 0.2s, transform 0.15s !important;
@@ -126,9 +139,9 @@ nav {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(212,168,67,0.15) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(120,80,200,0.08) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 40% at 20% 70%, rgba(40,120,255,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(232,149,109,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(108,127,255,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 20% 70%, rgba(78,203,113,0.04) 0%, transparent 50%),
     var(--black);
   animation: meshDrift 12s ease-in-out infinite alternate;
 }
@@ -168,11 +181,11 @@ nav {
   font-weight: 200;
   line-height: 1;
   margin-bottom: 0;
-  background: linear-gradient(160deg, #F0C45A 0%, #D4A843 35%, #8B6914 70%, #D4A843 100%);
+  background: linear-gradient(160deg, #f0a882 0%, #e8956d 35%, #c4633b 70%, #e8956d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 60px rgba(212,168,67,0.3));
+  filter: drop-shadow(0 0 60px rgba(232,149,109,0.3));
   opacity: 0;
   animation: fadeSlideUp 1.2s var(--ease-out) 0.4s forwards;
 }
@@ -185,6 +198,7 @@ nav {
 .hero-title {
   font-size: clamp(48px, 8vw, 96px);
   font-weight: 700;
+  font-family: var(--font-headline);
   letter-spacing: -0.03em;
   line-height: 1.02;
   margin-bottom: 24px;
@@ -193,7 +207,7 @@ nav {
 }
 .hero-title .line-2 {
   display: block;
-  background: linear-gradient(90deg, var(--gray-1) 0%, var(--white) 50%, var(--gray-2) 100%);
+  background: linear-gradient(90deg, var(--white) 0%, #f0ede8 50%, var(--gray-2) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -221,33 +235,32 @@ nav {
 .btn-cta-primary {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--gold);
-  color: var(--black);
-  padding: 17px 32px;
-  border-radius: 980px;
+  color: #0d0f12;
+  padding: 10px 20px;
+  border-radius: 6px;
   font-size: 17px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   text-decoration: none;
-  transition: background 0.2s, transform 0.2s var(--ease-spring), box-shadow 0.2s;
-  box-shadow: 0 0 0 0 rgba(212,168,67,0);
+  transition: background 0.2s, transform 0.2s var(--ease-spring);
 }
 .btn-cta-primary:hover {
   background: var(--gold-2);
   transform: scale(1.04);
-  box-shadow: 0 8px 30px rgba(212,168,67,0.4);
 }
 
 .btn-cta-ghost {
   display: inline-flex; align-items: center; gap: 6px;
   color: var(--gold);
-  padding: 17px 24px;
-  border-radius: 980px;
+  padding: 10px 20px;
+  border-radius: 6px;
   font-size: 17px;
   font-weight: 400;
   letter-spacing: -0.01em;
   text-decoration: none;
   transition: gap 0.2s;
-  border: 0.5px solid var(--border-gold);
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.05);
 }
 .btn-cta-ghost:hover { gap: 10px; }
 .btn-cta-ghost .arrow { font-style: normal; }
@@ -346,7 +359,8 @@ nav {
 .headline {
   font-size: clamp(36px, 5.5vw, 64px);
   font-weight: 700;
-  letter-spacing: -0.025em;
+  font-family: var(--font-headline);
+  letter-spacing: -0.03em;
   line-height: 1.05;
   margin-bottom: 20px;
 }
@@ -354,6 +368,7 @@ nav {
 .headline-xl {
   font-size: clamp(40px, 6.5vw, 80px);
   font-weight: 700;
+  font-family: var(--font-headline);
   letter-spacing: -0.03em;
   line-height: 1.0;
   margin-bottom: 20px;
@@ -368,7 +383,7 @@ nav {
 }
 
 .text-gold {
-  background: linear-gradient(135deg, var(--gold-2), var(--gold));
+  background: linear-gradient(135deg, #f0a882, #e8956d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -401,9 +416,9 @@ nav {
 }
 
 .outcome-tile {
-  background: var(--dark-3);
-  border: 0.5px solid var(--border);
-  border-radius: 20px;
+  background: #141618;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
   padding: 36px 32px;
   transition: transform 0.3s var(--ease-spring), border-color 0.3s, background 0.3s;
   cursor: default;
@@ -414,19 +429,19 @@ nav {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(212,168,67,0.07), transparent 60%);
+  background: radial-gradient(circle at 50% 0%, rgba(232,149,109,0.07), transparent 60%);
   opacity: 0;
   transition: opacity 0.3s;
 }
 .outcome-tile:hover {
   transform: translateY(-4px) scale(1.01);
-  border-color: rgba(212,168,67,0.3);
+  border-color: rgba(232,149,109,0.3);
 }
 .outcome-tile:hover::before { opacity: 1; }
 
 .outcome-tile.featured {
-  background: linear-gradient(145deg, rgba(212,168,67,0.12), rgba(212,168,67,0.04));
-  border-color: rgba(212,168,67,0.3);
+  background: linear-gradient(145deg, rgba(232,149,109,0.12), rgba(232,149,109,0.04));
+  border-color: rgba(232,149,109,0.3);
   grid-column: span 1;
 }
 
@@ -492,7 +507,7 @@ nav {
 .day-row:last-child { border-bottom: none; }
 .day-row:hover { background: var(--dark-3); }
 .day-row.day-final {
-  background: linear-gradient(90deg, rgba(212,168,67,0.06), transparent);
+  background: linear-gradient(90deg, rgba(232,149,109,0.06), transparent);
 }
 .day-num-badge {
   width: 36px; height: 36px;
@@ -546,7 +561,7 @@ nav {
 }
 .flywheel-card:hover {
   transform: translateY(-3px);
-  border-color: var(--border-gold);
+  border-color: rgba(232,149,109,0.25);
 }
 .flywheel-icon { font-size: 28px; margin-bottom: 12px; display: block; }
 .flywheel-title {
@@ -573,8 +588,8 @@ nav {
 .host-ava {
   width: 72px; height: 72px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2a2a2e, var(--dark-4));
-  border: 0.5px solid var(--border-gold);
+  background: linear-gradient(135deg, #1c1f23, var(--dark-4));
+  border: 0.5px solid rgba(232,149,109,0.25);
   display: flex; align-items: center; justify-content: center;
   font-size: 30px; flex-shrink: 0;
 }
@@ -616,8 +631,8 @@ nav {
 }
 .speaker-card:hover {
   transform: translateY(-6px) scale(1.01);
-  border-color: rgba(212,168,67,0.35);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  border-color: rgba(232,149,109,0.35);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
 }
 
 .speaker-top {
@@ -631,14 +646,14 @@ nav {
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--gold), var(--gold-2), transparent);
+  background: linear-gradient(90deg, #e8956d, #f0a882, transparent);
 }
 
 .speaker-avatar-wrap {
   width: 80px; height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold-3), rgba(212,168,67,0.35));
-  border: 1.5px solid var(--border-gold);
+  background: linear-gradient(135deg, rgba(232,149,109,0.18), rgba(232,149,109,0.35));
+  border: 1.5px solid rgba(232,149,109,0.25);
   display: flex; align-items: center; justify-content: center;
   font-size: 34px;
   margin-bottom: 20px;
@@ -719,14 +734,15 @@ nav {
 .sv-quote-block {
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 700;
-  letter-spacing: -0.025em;
+  font-family: var(--font-headline);
+  letter-spacing: -0.03em;
   line-height: 1.1;
   color: var(--gray-1);
   margin-bottom: 40px;
 }
 .sv-quote-block em {
   font-style: normal;
-  background: linear-gradient(135deg, var(--gold-2), var(--gold));
+  background: linear-gradient(135deg, #f0a882, #e8956d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -739,8 +755,8 @@ nav {
 .sv-benefit-icon {
   width: 44px; height: 44px;
   border-radius: 12px;
-  background: var(--gold-4);
-  border: 0.5px solid var(--border-gold);
+  background: rgba(232,149,109,0.07);
+  border: 0.5px solid rgba(232,149,109,0.25);
   display: flex; align-items: center; justify-content: center;
   font-size: 20px; flex-shrink: 0;
 }
@@ -762,7 +778,7 @@ nav {
 }
 .sv-panel-card:hover {
   transform: translateY(-4px);
-  border-color: var(--border-gold);
+  border-color: rgba(232,149,109,0.25);
 }
 .sv-panel-val {
   font-size: 38px; font-weight: 700;
@@ -796,14 +812,14 @@ nav {
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  background: linear-gradient(90deg, transparent, #e8956d, transparent);
   opacity: 0;
   transition: opacity 0.3s;
 }
 .honor-card:hover {
   transform: translateY(-5px);
-  border-color: var(--border-gold);
-  background: linear-gradient(145deg, rgba(212,168,67,0.06), var(--dark-3));
+  border-color: rgba(232,149,109,0.25);
+  background: linear-gradient(145deg, rgba(232,149,109,0.06), var(--dark-3));
 }
 .honor-card:hover::after { opacity: 1; }
 .honor-glyph { font-size: 44px; margin-bottom: 20px; display: block; }
@@ -873,7 +889,7 @@ nav {
   -webkit-appearance: none;
 }
 .form-input:focus, .form-select:focus, .form-textarea:focus {
-  border-color: var(--gold);
+  border-color: #e8956d;
   background: var(--dark-4);
 }
 .form-input::placeholder, .form-textarea::placeholder { color: var(--gray-3); }
@@ -882,23 +898,22 @@ nav {
 
 .btn-apply-full {
   width: 100%;
-  background: var(--gold);
-  color: var(--black);
+  background: #e8956d;
+  color: #0d0f12;
   border: none;
-  padding: 17px;
-  border-radius: 980px;
+  padding: 10px 20px;
+  border-radius: 6px;
   font-size: 17px;
-  font-weight: 600;
+  font-weight: 500;
   font-family: var(--font);
   letter-spacing: -0.01em;
   cursor: pointer;
   margin-top: 4px;
-  transition: background 0.2s, transform 0.2s var(--ease-spring), box-shadow 0.2s;
+  transition: background 0.2s, transform 0.2s var(--ease-spring);
 }
 .btn-apply-full:hover {
-  background: var(--gold-2);
+  background: #f0a882;
   transform: scale(1.02);
-  box-shadow: 0 8px 30px rgba(212,168,67,0.4);
 }
 .btn-apply-full:active { transform: scale(0.98); }
 
@@ -915,6 +930,95 @@ nav {
 }
 .scarcity-indicator .spots { color: #ff6b6b; font-weight: 700; }
 
+/* Payment step */
+.pay-step {
+  background: linear-gradient(135deg, rgba(232,149,109,0.1) 0%, rgba(232,149,109,0.04) 100%);
+  border: 1px solid #e8956d;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 0;
+}
+.pay-step-eyebrow {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 14px;
+}
+.pay-step-eyebrow .step-num {
+  background: #e8956d;
+  color: #0d0f12;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; flex-shrink: 0;
+}
+.pay-price-row {
+  display: flex; align-items: baseline; gap: 10px;
+  margin-bottom: 6px;
+}
+.pay-price-big {
+  font-size: 42px; font-weight: 800;
+  letter-spacing: -0.03em; color: var(--white);
+  line-height: 1;
+}
+.pay-price-detail {
+  font-size: 13px; color: var(--gray-2); line-height: 1.5;
+  margin-bottom: 16px;
+}
+.pay-price-detail strong { color: var(--gold); }
+.btn-pay-stripe {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%;
+  background: #e8956d;
+  color: #0d0f12;
+  font-size: 17px; font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: background 0.2s, transform 0.15s var(--ease-spring);
+  margin-bottom: 10px;
+}
+.btn-pay-stripe:hover {
+  background: #f0a882;
+  transform: scale(1.02);
+}
+.pay-security-row {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  font-size: 11px; color: var(--gray-3);
+}
+.pay-security-row span { display: flex; align-items: center; gap: 4px; }
+
+.step-divider {
+  display: flex; align-items: center; gap: 12px;
+  margin: 20px 0;
+}
+.step-divider::before, .step-divider::after {
+  content: ''; flex: 1;
+  height: 0.5px; background: var(--border);
+}
+.step-divider-label {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gray-3); white-space: nowrap;
+}
+
+.form-step-eyebrow {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gray-2);
+  margin-bottom: 12px;
+}
+.form-step-eyebrow .step-num {
+  background: var(--dark-4);
+  border: 0.5px solid var(--border);
+  color: var(--gray-2);
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; flex-shrink: 0;
+}
+
 /* ═══════════════════════════════════════
    FINAL CTA
 ═══════════════════════════════════════ */
@@ -922,7 +1026,7 @@ nav {
   text-align: center;
   padding: 160px 24px;
   background:
-    radial-gradient(ellipse 70% 50% at 50% 50%, rgba(212,168,67,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 50% at 50% 50%, rgba(232,149,109,0.1) 0%, transparent 70%),
     var(--black);
   position: relative;
   overflow: hidden;
@@ -933,7 +1037,7 @@ nav {
   transform: translate(-50%, -50%);
   font-size: 600px;
   font-weight: 200;
-  color: rgba(212,168,67,0.03);
+  color: rgba(232,149,109,0.03);
   pointer-events: none;
   line-height: 1;
   user-select: none;
@@ -959,16 +1063,15 @@ nav {
   overflow: hidden;
 }
 .pricing-featured {
-  border-color: var(--gold);
-  background: linear-gradient(135deg, var(--dark-2) 0%, rgba(212,168,67,0.06) 100%);
-  box-shadow: 0 0 40px rgba(212,168,67,0.12);
+  border-color: #e8956d;
+  background: linear-gradient(135deg, #141618 0%, rgba(232,149,109,0.06) 100%);
 }
 .pricing-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: var(--gold);
-  color: var(--black);
+  background: #e8956d;
+  color: #0d0f12;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -1011,8 +1114,8 @@ nav {
   margin-bottom: 20px;
 }
 .completion-bonus {
-  background: rgba(212,168,67,0.08);
-  border: 0.5px solid var(--border-gold);
+  background: rgba(232,149,109,0.08);
+  border: 0.5px solid rgba(232,149,109,0.25);
   border-radius: 12px;
   padding: 16px 18px;
   margin-bottom: 24px;
@@ -1032,33 +1135,34 @@ nav {
   display: block;
   width: 100%;
   text-align: center;
-  background: var(--gold);
-  color: var(--black);
+  background: #e8956d;
+  color: #0d0f12;
   font-size: 15px;
   font-weight: 700;
-  padding: 15px 24px;
-  border-radius: 10px;
+  padding: 10px 20px;
+  border-radius: 6px;
   text-decoration: none;
   letter-spacing: 0.01em;
   transition: background 0.2s, transform 0.15s;
   margin-bottom: 12px;
 }
-.btn-pricing-cta:hover { background: var(--gold-2); transform: scale(1.02); }
+.btn-pricing-cta:hover { background: #f0a882; transform: scale(1.02); }
 .btn-pricing-ghost {
   display: block;
   width: 100%;
   text-align: center;
-  border: 0.5px solid var(--border);
-  color: var(--gray-1);
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.05);
+  color: #f0ede8;
   font-size: 15px;
   font-weight: 600;
-  padding: 15px 24px;
-  border-radius: 10px;
+  padding: 10px 20px;
+  border-radius: 6px;
   text-decoration: none;
   transition: border-color 0.2s, color 0.2s;
   margin-bottom: 12px;
 }
-.btn-pricing-ghost:hover { border-color: var(--gray-2); color: var(--white); }
+.btn-pricing-ghost:hover { border-color: rgba(255,255,255,0.20); color: #f0ede8; }
 .pricing-note {
   font-size: 12px;
   color: var(--gray-3);
@@ -1128,7 +1232,7 @@ footer {
     <li><a href="#outcomes">Program</a></li>
     <li><a href="#market">The Market</a></li>
     <li><a href="#speakers">Speakers</a></li>
-    <li><a href="#sv">Silicon Valley</a></li>
+    <li><a href="#pricing">Pricing</a></li>
     <li><a href="#apply" class="nav-apply">Apply · $497 Beta</a></li>
   </ul>
 </nav>
@@ -1360,7 +1464,7 @@ footer {
           </div>
           <div class="day-domain-badge">D1–D5</div>
         </div>
-        <div class="day-row" style="background: linear-gradient(90deg, rgba(212,168,67,0.04), transparent);">
+        <div class="day-row" style="background: linear-gradient(90deg, rgba(232,149,109,0.04), transparent);">
           <div class="day-num-badge" style="background: var(--gold-3); border-color: var(--border-gold); color: var(--gold-2);">11</div>
           <div class="day-info">
             <div class="day-name">Founder Demo Day</div>
@@ -1444,7 +1548,7 @@ footer {
       </div>
 
       <!-- Right: high-demand side -->
-      <div style="padding: 48px 40px; background: linear-gradient(135deg, rgba(212,168,67,0.06), var(--dark-2));">
+      <div style="padding: 48px 40px; background: linear-gradient(135deg, rgba(232,149,109,0.06), var(--dark-2));">
         <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;">HIGH-DEMAND SIDE</div>
         <div style="font-size: 40px; font-weight: 700; letter-spacing: -0.03em; color: var(--gold); margin-bottom: 8px;">3.2× ↑</div>
         <div style="font-size: 15px; color: var(--gray-2); line-height: 1.6; margin-bottom: 24px;">Architects who design, build, and manage AI systems with 7 empirical functional skills.</div>
@@ -1513,7 +1617,7 @@ footer {
           <div style="font-size: 13px; color: var(--gray-2); line-height: 1.6;">Calculate blended cost per token and prove ROI before deploying agentic systems at scale. Applied high school math.</div>
         </div>
       </div>
-      <div style="background: linear-gradient(135deg, rgba(212,168,67,0.1), var(--dark-3)); border: 0.5px solid var(--border-gold); border-radius: 16px; padding: 24px; display: flex; gap: 16px; align-items: flex-start;">
+      <div style="background: linear-gradient(135deg, rgba(232,149,109,0.1), var(--dark-3)); border: 0.5px solid rgba(232,149,109,0.25); border-radius: 16px; padding: 24px; display: flex; gap: 16px; align-items: flex-start;">
         <div style="font-size: 24px; flex-shrink: 0;">🔑</div>
         <div>
           <div style="font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--gold);">The Surprising Truth</div>
@@ -1823,8 +1927,47 @@ footer {
 
       <div class="reveal reveal-delay-2">
         <div class="apply-form-wrap">
-          <div class="form-title">Apply for Cohort 1 · Beta</div>
-          <div class="form-sub">20 spots · $497 · Ship all 3 criteria → $200 back. Net cost $297.</div>
+
+          <!-- ══ STEP 1: PAYMENT ══
+               TODO: Replace PAYMENT_LINK_HERE with your Stripe Payment Link.
+               Setup in 5 min: stripe.com → Products → Payment Links → Create → $497 → Copy link
+               Example: https://buy.stripe.com/your_link_here
+          -->
+          <div class="pay-step">
+            <div class="pay-step-eyebrow">
+              <span class="step-num">1</span>
+              Secure your seat
+            </div>
+            <div class="pay-price-row">
+              <div class="pay-price-big">$497</div>
+            </div>
+            <div class="pay-price-detail">
+              Complete all 3 criteria → get <strong>$200 back</strong>. Net cost: $297.
+            </div>
+            <a href="PAYMENT_LINK_HERE" class="btn-pay-stripe" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              Pay $497 — Reserve My Spot
+            </a>
+            <div class="pay-security-row">
+              <span>🔒 Stripe secure checkout</span>
+              <span>·</span>
+              <span>$200 back if you ship</span>
+              <span>·</span>
+              <span>20 spots only</span>
+            </div>
+          </div>
+
+          <!-- ══ STEP 2: APPLICATION ══ -->
+          <div class="step-divider">
+            <span class="step-divider-label">Then tell us about you</span>
+          </div>
+
+          <div class="form-step-eyebrow">
+            <span class="step-num">2</span>
+            Complete your application
+          </div>
+          <div class="form-sub" style="margin-bottom: 18px;">Already paid? Fill this out so Paul can review your spot personally.</div>
+
           <form id="apply-form">
             <input name="name" class="form-input" type="text" placeholder="Full name" required />
             <input name="email" class="form-input" type="email" placeholder="Email address" required />
@@ -1842,14 +1985,16 @@ footer {
               <option>Finance / Operations</option>
             </select>
             <textarea name="problem" class="form-textarea" placeholder="What problem would you build an AI company to solve? (1–3 sentences)" required></textarea>
-            <button id="apply-btn" class="btn-apply-full" type="submit">Apply for My Spot →</button>
+            <button id="apply-btn" class="btn-apply-full" type="submit">Submit Application →</button>
           </form>
-          <div class="form-note">$497 enrollment. Complete all 3 criteria → $200 refunded. Every application reviewed personally by Paul Wu.</div>
+
+          <div class="form-note">Every application reviewed personally by Paul Wu. Payment secures your seat — application tells us about you.</div>
           <div class="scarcity-indicator">
             <span>Cohort 1 Beta seats</span>
             <span class="spots">20 spots · April 13 · $497</span>
           </div>
         </div>
+
         <script>
           document.getElementById('apply-form').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -1868,12 +2013,12 @@ footer {
                 btn.style.color = 'white';
                 this.querySelectorAll('input, select, textarea').forEach(function(el) { el.disabled = true; });
               } else {
-                btn.textContent = 'Apply for My Spot \u2192';
+                btn.textContent = 'Submit Application \u2192';
                 btn.disabled = false;
                 alert('Something went wrong. Please try again.');
               }
             } catch(err) {
-              btn.textContent = 'Apply for My Spot \u2192';
+              btn.textContent = 'Submit Application \u2192';
               btn.disabled = false;
               alert('Network error. Please try again.');
             }
@@ -1955,9 +2100,9 @@ setTimeout(() => {
 const nav = document.querySelector('nav');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 60) {
-    nav.style.background = 'rgba(0,0,0,0.92)';
+    nav.style.background = 'rgba(13,15,18,0.92)';
   } else {
-    nav.style.background = 'rgba(0,0,0,0.72)';
+    nav.style.background = 'rgba(13,15,18,0.72)';
   }
 }, { passive: true });
 </script>
