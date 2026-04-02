@@ -941,6 +941,135 @@ nav {
 .final-cta .container { position: relative; }
 
 /* ═══════════════════════════════════════
+   PRICING
+═══════════════════════════════════════ */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.pricing-card {
+  background: var(--dark-2);
+  border: 0.5px solid var(--border);
+  border-radius: 20px;
+  padding: 36px;
+  position: relative;
+  overflow: hidden;
+}
+.pricing-featured {
+  border-color: var(--gold);
+  background: linear-gradient(135deg, var(--dark-2) 0%, rgba(212,168,67,0.06) 100%);
+  box-shadow: 0 0 40px rgba(212,168,67,0.12);
+}
+.pricing-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gold);
+  color: var(--black);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+.pricing-tier {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-2);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.pricing-price {
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.pricing-price-sub {
+  font-size: 13px;
+  color: var(--gray-2);
+  margin-bottom: 20px;
+}
+.pricing-price-sub strong { color: var(--gold); }
+.pricing-divider {
+  height: 0.5px;
+  background: var(--border);
+  margin: 20px 0;
+}
+.pricing-desc {
+  font-size: 14px;
+  color: var(--gray-1);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+.completion-bonus {
+  background: rgba(212,168,67,0.08);
+  border: 0.5px solid var(--border-gold);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 24px;
+}
+.bonus-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.bonus-item {
+  font-size: 13px;
+  color: var(--gray-1);
+  line-height: 1.7;
+}
+.btn-pricing-cta {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: var(--gold);
+  color: var(--black);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 15px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: background 0.2s, transform 0.15s;
+  margin-bottom: 12px;
+}
+.btn-pricing-cta:hover { background: var(--gold-2); transform: scale(1.02); }
+.btn-pricing-ghost {
+  display: block;
+  width: 100%;
+  text-align: center;
+  border: 0.5px solid var(--border);
+  color: var(--gray-1);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 15px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+  margin-bottom: 12px;
+}
+.btn-pricing-ghost:hover { border-color: var(--gray-2); color: var(--white); }
+.pricing-note {
+  font-size: 12px;
+  color: var(--gray-3);
+  text-align: center;
+  line-height: 1.5;
+}
+@media (max-width: 720px) {
+  .pricing-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════ */
 footer {
@@ -1000,7 +1129,7 @@ footer {
     <li><a href="#market">The Market</a></li>
     <li><a href="#speakers">Speakers</a></li>
     <li><a href="#sv">Silicon Valley</a></li>
-    <li><a href="#apply" class="nav-apply">Apply Now</a></li>
+    <li><a href="#apply" class="nav-apply">Apply · $497 Beta</a></li>
   </ul>
 </nav>
 
@@ -1030,16 +1159,16 @@ footer {
 
   <div class="hero-stats">
     <div class="hero-stat">
-      <span class="hero-stat-val">50</span>
-      <span class="hero-stat-lbl">Founders Max</span>
+      <span class="hero-stat-val">20</span>
+      <span class="hero-stat-lbl">Beta Founders</span>
     </div>
     <div class="hero-stat">
       <span class="hero-stat-val">12</span>
       <span class="hero-stat-lbl">Days Intensive</span>
     </div>
     <div class="hero-stat">
-      <span class="hero-stat-val">$0</span>
-      <span class="hero-stat-lbl">Cost to Join</span>
+      <span class="hero-stat-val">$497</span>
+      <span class="hero-stat-lbl">Beta Price</span>
     </div>
     <div class="hero-stat">
       <span class="hero-stat-val">∞</span>
@@ -1056,14 +1185,14 @@ footer {
     <span class="location-ticker-item"><span class="ticker-dot">●</span> <strong>Claude Certified Architect</strong> — Official Anthropic credential</span>
     <span class="location-ticker-item"><span class="ticker-dot">●</span> <strong>Sam Wong</strong> · 21 Startup Secrets · Band of Angels</span>
     <span class="location-ticker-item"><span class="ticker-dot">●</span> <strong>Mystery Speaker 🎭</strong> · Silicon Valley Game-Changer · TBA</span>
-    <span class="location-ticker-item"><span class="ticker-dot">●</span> Cohort 1 · 50 spots · Applications open</span>
+    <span class="location-ticker-item"><span class="ticker-dot">●</span> Cohort 1 · 20 spots · $497 Beta</span>
     <!-- duplicate for seamless loop -->
     <span class="location-ticker-item"><span class="ticker-dot">●</span> <strong>Mountain View, CA</strong> — Heart of Silicon Valley</span>
     <span class="location-ticker-item"><span class="ticker-dot">●</span> In-person + Online for global founders</span>
     <span class="location-ticker-item"><span class="ticker-dot">●</span> <strong>Claude Certified Architect</strong> — Official Anthropic credential</span>
     <span class="location-ticker-item"><span class="ticker-dot">●</span> <strong>Sam Wong</strong> · 21 Startup Secrets · Band of Angels</span>
     <span class="location-ticker-item"><span class="ticker-dot">●</span> <strong>Mystery Speaker 🎭</strong> · Silicon Valley Game-Changer · TBA</span>
-    <span class="location-ticker-item"><span class="ticker-dot">●</span> Cohort 1 · 50 spots · Applications open</span>
+    <span class="location-ticker-item"><span class="ticker-dot">●</span> Cohort 1 · 20 spots · $497 Beta</span>
   </div>
 </div>
 
@@ -1593,14 +1722,65 @@ footer {
   </div>
 </section>
 
+<!-- ══ PRICING ══ -->
+<section class="section section-dark" id="pricing">
+  <div class="container">
+    <div class="reveal" style="text-align:center; margin-bottom: 64px;">
+      <span class="eyebrow">Investment</span>
+      <h2 class="headline">Beta pricing ends<br>with Cohort 1.</h2>
+      <p class="subhead">The first 20 founders get the lowest price OmegaFounders will ever be. You help shape the program. If you ship, you get $200 back. Cohort 2 is $1,497.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <!-- Beta Card -->
+      <div class="pricing-card pricing-featured reveal reveal-delay-1">
+        <div class="pricing-badge">⚡ Beta · April 13, 2026</div>
+        <div class="pricing-tier">Cohort 1 — Beta</div>
+        <div class="pricing-price">$497</div>
+        <div class="pricing-price-sub">Ship all 3 criteria → get <strong>$200 back</strong>. Net cost: $297.</div>
+        <div class="pricing-divider"></div>
+        <div class="pricing-desc">You're in the founding cohort. You help shape the program, build in public, and earn Silicon Valley credibility. That's worth paying for. Completing it is worth getting paid for.</div>
+        <div class="completion-bonus">
+          <div class="bonus-title">🎯 Completion Bonus: $200 refunded</div>
+          <div class="bonus-item">✓ Deploy a live AI agent (public URL, not localhost)</div>
+          <div class="bonus-item">✓ Earn your OmegaFounders certification</div>
+          <div class="bonus-item">✓ Post 3+ days of learning with #OmegaFounders</div>
+        </div>
+        <a href="#apply" class="btn-pricing-cta">Claim Beta Spot — $497 →</a>
+        <div class="pricing-note">20 spots only. First come, first served.<br>Cohort 2 is $1,497. Alumni from Cohort 1 get in free.</div>
+      </div>
+
+      <!-- Cohort 2 Card -->
+      <div class="pricing-card reveal reveal-delay-2">
+        <div class="pricing-badge" style="background: var(--dark-4); color: var(--gray-2); border: 0.5px solid var(--border);">Coming · Summer 2026</div>
+        <div class="pricing-tier">Cohort 2+</div>
+        <div class="pricing-price" style="color: var(--gray-2);">$1,497</div>
+        <div class="pricing-price-sub">Standard cohort pricing</div>
+        <div class="pricing-divider"></div>
+        <div class="pricing-desc">The full OmegaFounders experience — proven by Cohort 1's public track record. Same curriculum, same speakers, same certification. Built on real alumni results.</div>
+        <div style="margin: 20px 0 24px;">
+          <div class="bonus-item" style="color: var(--gray-2);">✓ All 12 days · Mountain View + Online</div>
+          <div class="bonus-item" style="color: var(--gray-2);">✓ OmegaFounders certification</div>
+          <div class="bonus-item" style="color: var(--gray-2);">✓ Demo Day + keynote speakers</div>
+          <div class="bonus-item" style="color: var(--gray-2);">✓ Alumni network access (Cohort 1 + 2)</div>
+          <div class="bonus-item" style="color: var(--gray-2);">✓ Proven outcomes from Cohort 1</div>
+        </div>
+        <a href="#apply" class="btn-pricing-ghost">Join Cohort 2 Waitlist →</a>
+        <div class="pricing-note" style="color: var(--gray-3);">Cohort 1 alumni get in free — forever.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ══ APPLY ══ -->
 <section class="section section-black" id="apply">
   <div class="container">
     <div class="apply-layout">
       <div class="reveal">
         <span class="eyebrow">Selection Criteria</span>
-        <h2 class="headline">50 spots.<br>Who earns them?</h2>
-        <p class="subhead">Not selecting for credentials. Selecting for builders who are all-in for 10 days and have something real to build.</p>
+        <h2 class="headline">20 spots.<br>Who earns them?</h2>
+        <p class="subhead">Not selecting for credentials. Selecting for builders who are all-in for 12 days and have something real to build. $497 secures your seat.</p>
 
         <div class="criteria-list">
           <div class="criteria-item">
@@ -1643,8 +1823,8 @@ footer {
 
       <div class="reveal reveal-delay-2">
         <div class="apply-form-wrap">
-          <div class="form-title">Apply for Cohort 1</div>
-          <div class="form-sub">50 spots. Mountain View + Online. Free to join — earned to keep.</div>
+          <div class="form-title">Apply for Cohort 1 · Beta</div>
+          <div class="form-sub">20 spots · $497 · Ship all 3 criteria → $200 back. Net cost $297.</div>
           <form id="apply-form">
             <input name="name" class="form-input" type="text" placeholder="Full name" required />
             <input name="email" class="form-input" type="email" placeholder="Email address" required />
@@ -1664,10 +1844,10 @@ footer {
             <textarea name="problem" class="form-textarea" placeholder="What problem would you build an AI company to solve? (1–3 sentences)" required></textarea>
             <button id="apply-btn" class="btn-apply-full" type="submit">Apply for My Spot →</button>
           </form>
-          <div class="form-note">No cost. No commitment until accepted. Every application reviewed personally.</div>
+          <div class="form-note">$497 enrollment. Complete all 3 criteria → $200 refunded. Every application reviewed personally by Paul Wu.</div>
           <div class="scarcity-indicator">
-            <span>Cohort 1 seats</span>
-            <span class="spots">50 spots · Waitlist forming</span>
+            <span>Cohort 1 Beta seats</span>
+            <span class="spots">20 spots · April 13 · $497</span>
           </div>
         </div>
         <script>
@@ -1712,8 +1892,8 @@ footer {
       <span class="eyebrow">Forged in Silicon Valley</span>
       <h2 class="headline-xl" style="max-width: 700px; margin: 0 auto 24px;">Yours to become.</h2>
       <p class="subhead" style="margin: 0 auto 48px; text-align: center;">The desert shall rejoice and blossom. Twelve days from now, you're on the other side.</p>
-      <a href="#apply" class="btn-cta-primary" style="font-size: 19px; padding: 18px 44px;">Apply for Cohort 1 →</a>
-      <p style="margin-top: 20px; font-size: 13px; color: var(--gray-3);">Mountain View, CA · April 2026 · 12 Days · 50 founders · Free</p>
+      <a href="#apply" class="btn-cta-primary" style="font-size: 19px; padding: 18px 44px;">Claim Beta Spot — $497 →</a>
+      <p style="margin-top: 20px; font-size: 13px; color: var(--gray-3);">Mountain View, CA · April 13, 2026 · 12 Days · 20 founders · $497 Beta → Cohort 2 is $1,497</p>
     </div>
   </div>
 </section>
@@ -1724,7 +1904,7 @@ footer {
     <div class="footer-brand">
       <img src="OmegaFounders.png" alt="OmegaFounders" style="height:28px; width:auto; vertical-align:middle;" />
     </div>
-    <div class="footer-copy">Forged in Silicon Valley · Mountain View, CA · Cohort 1 · 2026</div>
+    <div class="footer-copy">Forged in Silicon Valley · Mountain View, CA · Cohort 1 · April 2026 · $497 Beta</div>
     <div class="footer-links">
       <a href="#program">Program</a>
       <a href="#speakers">Speakers</a>
@@ -1766,7 +1946,7 @@ function animateCounter(el, target, duration = 1200, suffix = '') {
 setTimeout(() => {
   document.querySelectorAll('.hero-stat-val').forEach(el => {
     const text = el.textContent;
-    if (text === '50') animateCounter(el, 50);
+    if (text === '20') animateCounter(el, 20);
     if (text === '12') animateCounter(el, 12);
   });
 }, 1200);
